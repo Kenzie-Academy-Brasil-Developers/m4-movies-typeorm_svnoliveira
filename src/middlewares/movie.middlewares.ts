@@ -14,6 +14,10 @@ const nameExists = async (
     const requestName: string = req.body.name;
     const movieRepository: MovieRepo = AppDataSource.getRepository(Movie);
     
+    if(!requestName){
+        return next();
+    };
+    
     const foundName = await movieRepository.findOne({
         where: {
             name: requestName
@@ -21,7 +25,6 @@ const nameExists = async (
     });
 
     if (!foundName) {
-        console.log("name validated")
         return next();
     } else {
         throw new AppError("Movie already exists.", 409);
@@ -44,7 +47,7 @@ const idExists = async (
     
     if (movie) {
         res.locals.movie = movie;
-        console.log("id validated")
+    
         return next();
     } else {
         throw new AppError("Movie not found", 404);

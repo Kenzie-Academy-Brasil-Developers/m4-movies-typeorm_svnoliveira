@@ -5,14 +5,15 @@ import { MovieRead } from "../interfaces";
 
 
 const create = async ( req: Request, res: Response ): Promise<Response> => {
-    console.log("reached controllers")
     const movie: Movie = await movieServices.create(req.body);
 
     return res.status(201).json(movie);
 };
 
 const read = async ( req: Request, res: Response ): Promise<Response> => {
-    const movies: MovieRead = await movieServices.read();
+    const { pagination } = res.locals;
+    const movies: MovieRead = await movieServices.read(pagination);
+
     return res.status(200).json(movies);
 };
 

@@ -1,3 +1,10 @@
 import { MovieCreate, MovieRead, MovieUpdate, MovieRepo } from "./movie.interfaces";
-
-export { MovieCreate, MovieRead, MovieUpdate, MovieRepo };
+import { Pagination, PaginationParams } from "./pagination.interfaces";
+export { 
+    MovieCreate, 
+    MovieRead, 
+    MovieUpdate, 
+    MovieRepo,
+    Pagination,
+    PaginationParams 
+};

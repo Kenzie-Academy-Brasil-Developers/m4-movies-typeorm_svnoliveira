@@ -10,7 +10,7 @@ const validate = (schema: ZodTypeAny) => (
 ): void => {
     const validated = schema.parse(req.body);
     req.body = validated;
-    console.log("body validated")
+    
     return next();
 };
 

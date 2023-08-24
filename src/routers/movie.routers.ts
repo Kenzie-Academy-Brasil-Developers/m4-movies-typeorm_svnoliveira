@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { movieControllers } from "../controllers";
-import { bodyMiddlewares, movieMiddlewares } from "../middlewares";
+import { bodyMiddlewares, movieMiddlewares, paginationMiddlewares } from "../middlewares";
 import { movieCreateSchema, movieUpdateSchema } from "../schemas";
 
 const movieRouter: Router = Router();
@@ -10,7 +10,9 @@ bodyMiddlewares.validate(movieCreateSchema),
 movieMiddlewares.nameExists,
 movieControllers.create);
 
-movieRouter.get("", movieControllers.read);
+movieRouter.get("", 
+paginationMiddlewares.pagination,
+movieControllers.read);
 
 movieRouter.patch("/:id",
 bodyMiddlewares.validate(movieUpdateSchema),
