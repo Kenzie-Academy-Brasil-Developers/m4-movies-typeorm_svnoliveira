@@ -16,12 +16,12 @@ const dataSourceConfig = (): DataSourceOptions => {
             database: ':memory:',
             synchronize: true,
             entities: [entitiesPath],
-        }
-    }
+        };
+    };
 
     if (!dbUrl) {
         throw new Error("Missing env var: 'DATABASE_URL'");
-    }
+    };
 
     return {
         type: 'postgres',

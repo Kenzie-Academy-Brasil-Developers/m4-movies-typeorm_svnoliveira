@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Movie } from "../entities";
 import { movieServices } from "../services";
-import { MovieRead } from "../interfaces";
+import { MovieRead, Pagination } from "../interfaces";
 
 
 const create = async ( req: Request, res: Response ): Promise<Response> => {
@@ -12,8 +12,7 @@ const create = async ( req: Request, res: Response ): Promise<Response> => {
 
 const read = async ( req: Request, res: Response ): Promise<Response> => {
     const { pagination } = res.locals;
-    const movies: MovieRead = await movieServices.read(pagination);
-
+    const movies: Pagination = await movieServices.read(pagination);
     return res.status(200).json(movies);
 };
 

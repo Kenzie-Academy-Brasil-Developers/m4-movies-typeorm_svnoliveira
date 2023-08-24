@@ -1,5 +1,5 @@
 import { Movie } from "../entities"
-import { MovieCreate, MovieRead, MovieUpdate, PaginationParams } from "../interfaces";
+import { MovieCreate, MovieRead, MovieUpdate, Pagination, PaginationParams } from "../interfaces";
 import { movieRepository } from "../repositories";
 
 const create = async (payload: MovieCreate): Promise<Movie> => {
@@ -13,7 +13,7 @@ const read = async ({
     perPage, 
     sort, 
     order 
-}:PaginationParams): Promise<any> => {
+}:PaginationParams): Promise<Pagination> => {
     const [ movies, count ]: Array<MovieRead | number> = 
     await movieRepository.findAndCount({ 
         order: {[sort]: order},
